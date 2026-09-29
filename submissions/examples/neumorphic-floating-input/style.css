@@ -1,0 +1,94 @@
+/* ==========================================
+   EaseMotion Design Tokens & Neumorphism Theme
+   ========================================== */
+:root {
+  --easemotion-transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --easemotion-transition-base: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Neumorphic Soft Light & Shadow Palette */
+  --neu-bg: #e0e5ec;
+  --neu-text: #3d4b5c;
+  --neu-text-muted: #7e8e9f;
+  --neu-accent: #4d7cff;
+
+  /* Dual Soft Shadows (Raised & Inset) */
+  --neu-shadow-raised: 8px 8px 16px #a3b1c6, -8px -8px 16px #ffffff;
+  --neu-shadow-focus: inset 5px 5px 10px #a3b1c6, inset -5px -5px 10px #ffffff, 0 0 8px rgba(77, 124, 255, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--neu-bg);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 1.5rem;
+}
+
+.neu-input-container {
+  width: 100%;
+  max-width: 380px;
+}
+
+.neu-input-wrapper {
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  background: var(--neu-bg);
+  box-shadow: var(--neu-shadow-raised);
+  transition: box-shadow var(--easemotion-transition-base);
+}
+
+.neu-input-field {
+  width: 100%;
+  padding: 1.25rem 1.25rem 0.65rem;
+  font-size: 1rem;
+  color: var(--neu-text);
+  background: transparent;
+  border: none;
+  outline: none;
+  border-radius: 16px;
+}
+
+.neu-input-label {
+  position: absolute;
+  left: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.95rem;
+  color: var(--neu-text-muted);
+  pointer-events: none;
+  transition: 
+    top var(--easemotion-transition-base),
+    transform var(--easemotion-transition-base),
+    font-size var(--easemotion-transition-fast),
+    color var(--easemotion-transition-fast);
+}
+
+.neu-input-field:focus ~ .neu-input-label,
+.neu-input-field:not(:placeholder-shown) ~ .neu-input-label {
+  top: 0.55rem;
+  transform: translateY(0);
+  font-size: 0.725rem;
+  font-weight: 600;
+  color: var(--neu-accent);
+}
+
+.neu-input-wrapper:focus-within {
+  box-shadow: var(--neu-shadow-focus);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .neu-input-wrapper,
+  .neu-input-label {
+    transition: none !important;
+    animation: none !important;
+  }
+}
